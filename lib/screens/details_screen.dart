@@ -75,8 +75,9 @@ class _PosterAndTtile extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: const FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('http://via.placeholder.com/200x300'),
+              image: NetworkImage('https://via.placeholder.com/200x300'),
               height: 150,
+              fit: BoxFit.cover,
             ),
           ),
           const SizedBox(
