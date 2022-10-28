@@ -1,50 +1,41 @@
 // To parse this JSON data, do
 //
-//     final welcome = welcomeFromMap(jsonString);
+//     final NowPlayingResponse = NowPlayingResponseFromMap(jsonString);
 
 import 'dart:convert';
 
-class Welcome {
-  Welcome({
-    this.dates,
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
+class NowPlayingResponse {
+  NowPlayingResponse({
+    required this.dates,
+    required this.page,
+    required this.results,
+    required this.totalPages,
+    required this.totalResults,
   });
 
   Dates dates;
   int page;
-  List<Result> results;
+  List<Movie> results;
   int totalPages;
   int totalResults;
 
-  factory Welcome.fromJson(String str) => Welcome.fromMap(json.decode(str));
+  factory NowPlayingResponse.fromJson(String str) =>
+      NowPlayingResponse.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
-  factory Welcome.fromMap(Map<String, dynamic> json) => Welcome(
+  factory NowPlayingResponse.fromMap(Map<String, dynamic> json) =>
+      NowPlayingResponse(
         dates: Dates.fromMap(json["dates"]),
         page: json["page"],
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
+        results: List<Movie>.from(json["results"].map((x) => Movie.fromMap(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "dates": dates.toMap(),
-        "page": page,
-        "results": List<dynamic>.from(results.map((x) => x.toMap())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
-      };
 }
 
 class Dates {
   Dates({
-    this.maximum,
-    this.minimum,
+    required this.maximum,
+    required this.minimum,
   });
 
   DateTime maximum;
@@ -52,37 +43,28 @@ class Dates {
 
   factory Dates.fromJson(String str) => Dates.fromMap(json.decode(str));
 
-  String toJson() => json.encode(toMap());
-
   factory Dates.fromMap(Map<String, dynamic> json) => Dates(
         maximum: DateTime.parse(json["maximum"]),
         minimum: DateTime.parse(json["minimum"]),
       );
-
-  Map<String, dynamic> toMap() => {
-        "maximum":
-            "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-        "minimum":
-            "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-      };
 }
 
-class Result {
-  Result({
-    this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.id,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.posterPath,
-    this.releaseDate,
-    this.title,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
+class Movie {
+  Movie({
+    required this.adult,
+    required this.backdropPath,
+    required this.genreIds,
+    required this.id,
+    required this.originalLanguage,
+    required this.originalTitle,
+    required this.overview,
+    required this.popularity,
+    required this.posterPath,
+    required this.releaseDate,
+    required this.title,
+    required this.video,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
   bool adult;
@@ -100,11 +82,11 @@ class Result {
   double voteAverage;
   int voteCount;
 
-  factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
+  factory Movie.fromJson(String str) => Movie.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Result.fromMap(Map<String, dynamic> json) => Result(
+  factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
