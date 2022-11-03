@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
 
@@ -15,6 +14,7 @@ class MoviesProvider extends ChangeNotifier {
   MoviesProvider() {
     print('MoviesProvider Inicializado');
     this.getOnDisplayMovies();
+    this.getPopularMovies();
   }
 
   getOnDisplayMovies() async {
@@ -35,7 +35,8 @@ class MoviesProvider extends ChangeNotifier {
 
     final popularResponse = PopularResponse.fromJson(response.body);
 
-    popularMovies = [...popularResponse.results];
+    popularMovies = [...popularMovies, ...popularResponse.results];
+    print(popularMovies[0]);
     notifyListeners();
   }
 }
