@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:peliculas/models/models.dart';
@@ -10,6 +12,10 @@ class MoviesProvider extends ChangeNotifier {
 
   List<Movie> onDisplayMovies = [];
   List<Movie> popularMovies = [];
+
+  Map<int, List<Cast>> movieCast = {};
+  //el id es el movie id que apuntara al listado de actores
+
   int _popularPage = 0;
 
   MoviesProvider() {
@@ -43,5 +49,14 @@ class MoviesProvider extends ChangeNotifier {
     popularMovies = [...popularMovies, ...popularResponse.results];
     print(popularMovies[0]);
     notifyListeners();
+  }
+
+  Future<List<Cast>> getMoviesCast(int movieId) async {
+    //TODO: Revisar el mapa, para saber si ya tenemos el contenido
+    print('pidiendo info al servidor - cast');
+    final jsonData = await this._getJasonData('3/movie/$movieId/credits');
+    final creditsResponse = CreditsResponse.fromJson(jsonData);
+    movieCast[movieId] = creditsResponse.cast;
+    return creditsResponse.cast;
   }
 }
