@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:peliculas/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,9 +32,9 @@ class CastingCard extends StatelessWidget {
           height: 180,
           // color: Colors.red,
           child: ListView.builder(
-            itemCount: 10,
+            itemCount: cast.length - 1,
             scrollDirection: Axis.horizontal,
-            itemBuilder: (_, int index) => _CastCard(),
+            itemBuilder: (_, int index) => _CastCard(actor: cast[index]),
           ),
         );
       },
@@ -43,6 +43,10 @@ class CastingCard extends StatelessWidget {
 }
 
 class _CastCard extends StatelessWidget {
+  final Cast actor;
+
+  const _CastCard({super.key, required this.actor});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -54,9 +58,9 @@ class _CastCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
-            child: const FadeInImage(
+            child: FadeInImage(
               placeholder: AssetImage('assets/no-image.jpg'),
-              image: NetworkImage('https://via.placeholder.com/150x300'),
+              image: NetworkImage(actor.fullProfilePath),
               height: 140,
               width: 100,
               fit: BoxFit.cover,
@@ -65,8 +69,8 @@ class _CastCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          const Text(
-            'actor.name',
+          Text(
+            actor.name,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           )
