@@ -14,7 +14,7 @@ class MovieSearchDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) {
-    // Regremos a la pantalla principal, en close, ponemos lo que queremos regresar,
+    // Regremos a la pantalla anterior, en close, ponemos lo que queremos regresar,
     //puede ser cualquier tipo de dato, en este caso null
     return IconButton(
         onPressed: () {
