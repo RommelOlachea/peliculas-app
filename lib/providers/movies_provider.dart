@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:peliculas/helpers/debouncer.dart';
 import 'package:peliculas/models/models.dart';
 
 class MoviesProvider extends ChangeNotifier {
@@ -15,6 +18,14 @@ class MoviesProvider extends ChangeNotifier {
   //el id es el movie id que apuntara al listado de actores
 
   int _popularPage = 0;
+
+  final debouncer = Debouncer(duration: const Duration(milliseconds: 500));
+
+  final StreamController<List<Movie>> _suggerstionsStreamController =
+      new StreamController.broadcast();
+
+  Stream<List<Movie>> get suggestionStream =>
+      this._suggerstionsStreamController.stream;
 
   MoviesProvider() {
     print('MoviesProvider Inicializado');
@@ -67,4 +78,6 @@ class MoviesProvider extends ChangeNotifier {
     final searchResponse = SearchResponse.fromJson(response.body);
     return searchResponse.results;
   }
+
+  void getSuggestionsByQuery(String searchTerm) {}
 }
