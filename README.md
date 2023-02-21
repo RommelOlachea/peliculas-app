@@ -4,7 +4,7 @@ Proyecto en Flutter que nos permite consultar peliculas que se encuentran en car
 Con este proyecto se ejemplifica el uso de:
 
 -Consumo de servicios REST (https://www.themoviedb.org)
--Conversión de JSON -- Maps -- Modelos
+-Conversión de JSON a Maps a Modelos
 -PageViews
 -ApiKeys
 -Providers
