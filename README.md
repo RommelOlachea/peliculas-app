@@ -1,16 +1,19 @@
 # peliculas
 
-A new Flutter project.
+Proyecto en Flutter que nos permite consultar peliculas que se encuentran en cartelera, asi como los actores que participan en estas.
+Con este proyecto se ejemplifica el uso de:
 
-## Getting Started
+-Consumo de servicios REST (https://www.themoviedb.org)
+-Conversión de JSON --> Maps --> Modelos
+-PageViews
+-ApiKeys
+-Providers
+-Streams
+-Infinite Horizontal Scroll
+-SearchDelegate
 
-This project is a starting point for a Flutter application.
+## Dependencias
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-  card_swiper : ^2.0.1
+-  http: ^0.13.5
+-  provider: ^6.0.4
